@@ -69,6 +69,15 @@ class TodoDao {
             let sqlRequest = `UPDATE category SET modified = $modified 
              where name = $categoryold or name = $categorynew`;
             this.common.run(sqlRequest,sqlParams);
+            sqlParams = {
+                $categorynew : updateData[3],
+                $created : dateTime,
+                $modified : `---`
+            }
+            sqlRequest = `INSERT INTO category(name, created, modified )
+            VALUES ( $categorynew, $created, $modified )`;
+            this.common.run(sqlRequest, sqlParams);
+
 
          sqlParams = {
             

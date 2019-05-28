@@ -115,9 +115,14 @@ class CategoryDao {
      * returns database deletion status
      */
     deleteById(name) {
-         
+
         let sqlParams = {$name: name};
-        let sqlRequest = "DELETE FROM category WHERE name=$name";
+        let sqlRequest = "DELETE FROM todo WHERE category=$name";
+        this.common.run(sqlRequest, sqlParams);
+
+         
+        sqlParams = {$name: name};
+        sqlRequest = "DELETE FROM category WHERE name=$name";
     
         return this.common.run(sqlRequest, sqlParams);
     };
